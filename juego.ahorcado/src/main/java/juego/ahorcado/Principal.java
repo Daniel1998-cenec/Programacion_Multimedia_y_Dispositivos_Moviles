@@ -13,10 +13,14 @@ public class Principal {
 		String palabraSecreta=Funciones.palabraSecreta();
 		char [] palabraGuiones=Funciones.palabrasGuiones(palabraSecreta);
 		boolean juegoTerminado=false;
+		byte intentos=6;
+		
+		System.out.println("Bienvenido al juego del ahorcado\n");
 		
 		do {
-			System.out.println("Bienvenido al juego del ahorcado.\n\n"+
-		"Por favor, introduzca una letra\n");
+			System.out.println("\nTe quedan "+ intentos+" intentos");
+			System.out.println(palabraGuiones);
+			System.out.println("Por favor, introduzca una letra\n");
 			char letra=sc.next().charAt(0);
 			boolean algunaLetraAcertada=false;
 			for(int i=0; i<palabraSecreta.length();i++) {
@@ -27,6 +31,19 @@ public class Principal {
 			}
 			if(!algunaLetraAcertada) {
 				System.out.println("\nNo has acertado ninguna letra\n");
+				--intentos;
+				Funciones.dibujarAhorcado(intentos);
+				
+				if(intentos==0) {
+					System.out.println("Has perdido porque agotaste los intentos");
+					juegoTerminado=true;
+				}
+			}else {
+				boolean juegoGanado= !Funciones.hayGuiones(palabraGuiones);
+				if (juegoGanado) {
+					System.out.println("Has ganado el juego");
+					juegoTerminado=true;
+				}
 			}
 		}while (!juegoTerminado);
 		
