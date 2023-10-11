@@ -1,8 +1,8 @@
 package juego.ahorcado;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Principal {
 
@@ -16,6 +16,8 @@ public class Principal {
 		byte intentos=6;
 		
 		System.out.println("Bienvenido al juego del ahorcado\n");
+		//String a = JOptionPane.showInputDialog("fdf");
+		//JOptionPane.showMessageDialog(null, "fz");
 		
 		do {
 			System.out.println("Te quedan "+ intentos+" intentos");
