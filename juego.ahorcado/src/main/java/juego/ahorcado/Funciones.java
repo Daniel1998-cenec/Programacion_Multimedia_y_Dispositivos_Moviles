@@ -30,8 +30,8 @@ public class Funciones {
 	//Este método lo que hace es comprobar con un for en una array si hay guiones.
 	public static boolean hayGuiones(char[] comprobacion) {
 		//Este tipo de for solo se usa en array!!
-		for(char i:comprobacion) {
-			if (i=='_');
+		for( int i=0;i<comprobacion.length;i++) {
+			if (comprobacion[i]=='_')
 				return true;
 		}
 		return false;

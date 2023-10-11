@@ -18,7 +18,7 @@ public class Principal {
 		System.out.println("Bienvenido al juego del ahorcado\n");
 		
 		do {
-			System.out.println("\nTe quedan "+ intentos+" intentos");
+			System.out.println("Te quedan "+ intentos+" intentos");
 			System.out.println(palabraGuiones);
 			System.out.println("Por favor, introduzca una letra\n");
 			char letra=sc.next().charAt(0);
@@ -47,6 +47,7 @@ public class Principal {
 			}
 		}while (!juegoTerminado);
 		
+		sc.close();
 		//Prueba que me salga palabras random.
 		//System.out.println(palabraSecreta);
 		
