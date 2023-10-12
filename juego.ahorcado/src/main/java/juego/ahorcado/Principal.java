@@ -21,7 +21,7 @@ public class Principal {
 		JOptionPane.showMessageDialog(null, "Bienvenido al juego del ahorcado", "Bienvenido", JOptionPane.PLAIN_MESSAGE);
 		do {
 			//System.out.println("Te quedan "+ intentos+" intentos");
-			JOptionPane.showMessageDialog(null, "Te quedan " + fallos + " intentos");
+			JOptionPane.showMessageDialog(null, "Te quedan " + fallos + " vidas");
 			//System.out.println(palabraGuiones);
 			JOptionPane.showMessageDialog(null, new String(palabraGuiones));
 			
