@@ -3,27 +3,41 @@ package juego.ahorcado;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		Scanner sc= new Scanner(System.in);
+		//Scanner sc= new Scanner(System.in);
 		
 		String palabraSecreta=Funciones.palabraSecreta();
 		char [] palabraGuiones=Funciones.palabrasGuiones(palabraSecreta);
 		boolean juegoTerminado=false;
-		byte intentos=6;
+		byte fallos=7;
+				
 		
-		System.out.println("Bienvenido al juego del ahorcado\n");
-		//String a = JOptionPane.showInputDialog("fdf");
-		//JOptionPane.showMessageDialog(null, "fz");
-		
+		//System.out.println("Bienvenido al juego del ahorcado\n");
+		JOptionPane.showMessageDialog(null, "Bienvenido al juego del ahorcado", "Bienvenido", JOptionPane.PLAIN_MESSAGE);
 		do {
-			System.out.println("Te quedan "+ intentos+" intentos");
-			System.out.println(palabraGuiones);
-			System.out.println("Por favor, introduzca una letra\n");
-			char letra=sc.next().charAt(0);
+			//System.out.println("Te quedan "+ intentos+" intentos");
+			JOptionPane.showMessageDialog(null, "Te quedan " + fallos + " intentos");
+			//System.out.println(palabraGuiones);
+			JOptionPane.showMessageDialog(null, new String(palabraGuiones));
+			
+			//System.out.println("Por favor, introduzca una letra\n");
+			String letraIntroducida=JOptionPane.showInputDialog("Por favor, introduzca una letra\n");
+			
+			// Verifica si el usuario presionó "Cancelar" o cerró la ventana del cuadro de diálogo
+			if (letraIntroducida == null) {
+				JOptionPane.showMessageDialog(null, "Juego terminado por cancelación del usuario");
+			    break; // Sale del bucle del juego
+            }
+			//Sirve para que no pete el programa sino introduces ninguna letra
+			if (letraIntroducida.isEmpty()) {
+				continue;
+			}
+			char letra=letraIntroducida.charAt(0);
 			boolean algunaLetraAcertada=false;
 			for(int i=0; i<palabraSecreta.length();i++) {
 				if(palabraSecreta.charAt(i)==letra) {
@@ -32,24 +46,32 @@ public class Principal {
 				}
 			}
 			if(!algunaLetraAcertada) {
-				System.out.println("\nNo has acertado ninguna letra\n");
-				--intentos;
-				Funciones.dibujarAhorcado(intentos);
+				JOptionPane.showMessageDialog(null, "\nNo has acertado ninguna letra\n");
 				
-				if(intentos==0) {
-					System.out.println("Has perdido porque agotaste los intentos");
+				//Metodo que dibuja el ahorcado cuando fallo una letra.
+				//Funciones.dibujarAhorcado(intentos);
+				//String dibujo = Funciones.dibujarAhorcado(intentos);
+				JTextArea textArea = new JTextArea(Funciones.dibujarAhorcado(fallos));
+				 textArea.setColumns(20); // Ancho personalizado
+				 textArea.setRows(10);   // Alto personalizado
+				 
+				JOptionPane.showMessageDialog(null, textArea, "Ahorcado", JOptionPane.PLAIN_MESSAGE);
+				--fallos;
+				
+				if(fallos==0) {
+					JOptionPane.showMessageDialog(null, "Has perdido porque se ha completado el ahorcado");
 					juegoTerminado=true;
 				}
 			}else {
 				boolean juegoGanado= !Funciones.hayGuiones(palabraGuiones);
 				if (juegoGanado) {
-					System.out.println("Has ganado el juego");
+					JOptionPane.showMessageDialog(null, "Has ganado el juego");
 					juegoTerminado=true;
 				}
 			}
 		}while (!juegoTerminado);
 		
-		sc.close();
+		//sc.close();
 		//Prueba que me salga palabras random.
 		//System.out.println(palabraSecreta);
 		
