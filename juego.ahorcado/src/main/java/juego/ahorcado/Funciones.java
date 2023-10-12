@@ -8,7 +8,7 @@ public class Funciones {
 	
 	public static String palabraSecreta() {
 		
-		String palabras[]= {"casa","perro","coche"};
+		String palabras[]= {"casa","perro","coche","hienas"};
 		Random r=new Random();
 		byte palabraAleatoria=(byte) r.nextInt(palabras.length);
 		
@@ -104,6 +104,9 @@ public class Funciones {
 			dibujo+="\n|      / \\";
 			dibujo+="\n|";
 			dibujo+="\n|____";
+			
+			// Agrega el mensaje cuando el juego se pierde
+            dibujo += "\n\nEn veces la vida no sale como quiere";
 			break;
 		}
 		return dibujo;
