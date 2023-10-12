@@ -8,7 +8,7 @@ public class Funciones {
 	
 	public static String palabraSecreta() {
 		
-		String palabras[]= {"casa","perro","coche","hienas"};
+		String palabras[]= {"alcornoque","superman","rinoceronte","hienas"};
 		Random r=new Random();
 		byte palabraAleatoria=(byte) r.nextInt(palabras.length);
 		
@@ -21,10 +21,15 @@ public class Funciones {
 				
 		//creo un array de char de guiones 
 				
-		char palabrasGuiones[]= new char [nLetrasPalabraSecreta];
-		for(byte i=0; i<palabrasGuiones.length; i++) {
+		char palabrasGuiones[]= new char [nLetrasPalabraSecreta*2-1];
+		
+		for(byte i=0, j=0; i<palabrasGuiones.length; i+=2) {
 		palabrasGuiones[i]='_';
+		if(i<palabrasGuiones.length-1) {
+			palabrasGuiones[i+1]=' ';
+			}
 		}
+		
 		
 		return palabrasGuiones;
 	}

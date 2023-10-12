@@ -40,8 +40,8 @@ public class Principal {
 			char letra=letraIntroducida.charAt(0);
 			boolean algunaLetraAcertada=false;
 			for(int i=0; i<palabraSecreta.length();i++) {
-				if(palabraSecreta.charAt(i)==letra) {
-					palabraGuiones[i]=letra;
+				if(palabraSecreta.charAt(i)==letra && palabraGuiones[i * 2] == '_') {
+					palabraGuiones[i*2]=letra;
 					algunaLetraAcertada=true;
 				}
 			}
@@ -63,7 +63,13 @@ public class Principal {
 					juegoTerminado=true;
 				}
 			}else {
-				boolean juegoGanado= !Funciones.hayGuiones(palabraGuiones);
+				boolean juegoGanado= true;
+				for (int i = 0; i < palabraSecreta.length(); i++) {
+				    if (palabraGuiones[i * 2] != palabraSecreta.charAt(i)) {
+				        juegoGanado = false;
+				        break;
+				    }
+				}
 				if (juegoGanado) {
 					JOptionPane.showMessageDialog(null, "Has ganado el juego");
 					juegoTerminado=true;
